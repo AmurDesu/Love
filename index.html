@@ -3,9 +3,12 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0b0a09">
-<title>For You — Love</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Любимая">
+<title>Для любимой ❤️</title>
 
 <style>
 * {
@@ -23,7 +26,7 @@ body {
 }
 
 header {
-    padding: 32px 15px 5px;
+    padding: 30px 12px 5px;
 }
 
 .subtitle {
@@ -33,9 +36,9 @@ header {
 }
 
 h1 {
-    font-size: clamp(30px, 8vw, 54px);
+    font-size: clamp(28px, 8vw, 48px);
     font-weight: normal;
-    letter-spacing: 7px;
+    letter-spacing: 6px;
     margin: 18px 0;
     color: #f1dfbd;
 }
@@ -92,16 +95,16 @@ h1 {
 }
 
 .center h2 {
-    font-size: clamp(23px, 7vw, 37px);
+    font-size: clamp(22px, 7vw, 35px);
     font-weight: normal;
-    letter-spacing: 5px;
+    letter-spacing: 4px;
     margin: 0 0 12px;
     color: #f1dfbd;
 }
 
 .center span {
     color: #c5a574;
-    font-size: 20px;
+    font-size: 22px;
 }
 
 button {
@@ -109,7 +112,7 @@ button {
     border: 1px solid #8c714c;
     border-radius: 2px;
     color: #e1c9a5;
-    padding: 13px 25px;
+    padding: 14px 22px;
     font: 12px Arial, sans-serif;
     letter-spacing: 2px;
     margin: 8px 0 25px;
@@ -117,10 +120,77 @@ button {
 }
 
 footer {
-    padding: 0 20px 30px;
+    padding: 0 20px 25px;
     color: #9d8768;
     font-size: 13px;
     font-style: italic;
+}
+
+/* Финальное признание */
+#finale {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(8, 7, 6, 0.97);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 2s ease, visibility 2s ease;
+}
+
+#finale.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.message {
+    max-width: 360px;
+    width: 100%;
+    border: 1px solid #6f593a;
+    padding: 35px 22px;
+    background: #100e0b;
+    box-shadow: 0 0 40px #3a2816;
+}
+
+.message .small {
+    color: #b89a6b;
+    font: 10px Arial, sans-serif;
+    letter-spacing: 3px;
+}
+
+.message h2 {
+    color: #f1dfbd;
+    font-size: 35px;
+    font-weight: normal;
+    margin: 22px 0;
+}
+
+.big-heart {
+    color: #c5a574;
+    font-size: 42px;
+    margin: 15px 0;
+    animation: heartbeat 2s ease-in-out infinite;
+}
+
+.message p {
+    color: #e1cfb3;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.message .signature {
+    color: #a99170;
+    font-size: 13px;
+    font-style: italic;
+    margin-top: 25px;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
 }
 
 @media (max-width: 360px) {
@@ -132,10 +202,15 @@ footer {
         width: 85px;
         font-size: 9px;
     }
+
+    .message p {
+        font-size: 16px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
+        animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
     }
 }
@@ -145,20 +220,15 @@ footer {
 <body>
 
 <header>
-    <div class="subtitle">
-        TWENTY LANGUAGES · ONE FEELING
-    </div>
-
+    <div class="subtitle">TWENTY LANGUAGES · ONE FEELING</div>
     <h1>I LOVE YOU</h1>
-
     <div class="ornament">— ♡ —</div>
 </header>
 
 <div class="scene" id="scene">
     <svg id="drawing" viewBox="0 0 500 440"
          preserveAspectRatio="none">
-        <path id="heartLine"
-              d=""
+        <path id="heartLine" d=""
               fill="none"
               stroke="#b89a6b"
               stroke-width="1"
@@ -174,9 +244,23 @@ footer {
 
 <button onclick="start()">REPLAY THE MOMENT</button>
 
-<footer>
-    One heart. Twenty languages. One feeling.
-</footer>
+<footer>One heart. Twenty languages. One feeling.</footer>
+
+<div id="finale">
+    <div class="message">
+        <div class="small">JUST FOR YOU</div>
+        <h2>Любимая</h2>
+        <div class="big-heart">♡</div>
+        <p>
+            Среди всех языков мира
+            моё любимое слово — ты.
+        </p>
+        <div class="signature">
+            Ты — моё самое красивое чувство.
+        </div>
+        <button onclick="start()">ЕЩЁ РАЗ ♥</button>
+    </div>
+</div>
 
 <script>
 const phrases = [
@@ -206,6 +290,7 @@ const scene = document.getElementById("scene");
 const svg = document.getElementById("drawing");
 const line = document.getElementById("heartLine");
 const center = document.getElementById("center");
+const finale = document.getElementById("finale");
 
 let timers = [];
 
@@ -213,11 +298,10 @@ function start() {
     timers.forEach(clearTimeout);
     timers = [];
 
-    scene.querySelectorAll(".phrase").forEach(el => {
-        el.remove();
-    });
-
+    finale.classList.remove("show");
     center.classList.remove("show");
+
+    scene.querySelectorAll(".phrase").forEach(el => el.remove());
 
     line.style.transition = "none";
     line.style.strokeDasharray = "none";
@@ -225,24 +309,17 @@ function start() {
 
     const width = scene.clientWidth;
     const height = scene.clientHeight;
-
     const centerX = width / 2;
     const centerY = height / 2;
-
     const scale = Math.min(width / 38, height / 32);
 
-    svg.setAttribute(
-        "viewBox",
-        "0 0 " + width + " " + height
-    );
+    svg.setAttribute("viewBox", "0 0 " + width + " " + height);
 
     let path = "";
 
     for (let i = 0; i <= 240; i++) {
         const t = 2 * Math.PI * i / 240;
-
         const x = 16 * Math.pow(Math.sin(t), 3);
-
         const y = 13 * Math.cos(t)
                 - 5 * Math.cos(2 * t)
                 - 2 * Math.cos(3 * t)
@@ -258,29 +335,23 @@ function start() {
     line.setAttribute("d", path);
 
     const length = line.getTotalLength();
-
     line.style.strokeDasharray = length;
     line.style.strokeDashoffset = length;
 
     requestAnimationFrame(() => {
-        line.style.transition =
-            "stroke-dashoffset 4s ease";
-
+        line.style.transition = "stroke-dashoffset 4s ease";
         line.style.strokeDashoffset = "0";
     });
 
     for (let i = 0; i < phrases.length; i++) {
         const t = 2 * Math.PI * i / phrases.length;
-
         const x = 16 * Math.pow(Math.sin(t), 3);
-
         const y = 13 * Math.cos(t)
                 - 5 * Math.cos(2 * t)
                 - 2 * Math.cos(3 * t)
                 - Math.cos(4 * t);
 
         const el = document.createElement("div");
-
         el.className = "phrase";
         el.textContent = phrases[i];
 
@@ -292,18 +363,18 @@ function start() {
 
         scene.appendChild(el);
 
-        const timer = setTimeout(() => {
+        timers.push(setTimeout(() => {
             el.classList.add("show");
-        }, 700 + i * 450);
-
-        timers.push(timer);
+        }, 700 + i * 450));
     }
 
-    const finalTimer = setTimeout(() => {
+    timers.push(setTimeout(() => {
         center.classList.add("show");
-    }, 700 + phrases.length * 450);
+    }, 700 + phrases.length * 450));
 
-    timers.push(finalTimer);
+    timers.push(setTimeout(() => {
+        finale.classList.add("show");
+    }, 700 + phrases.length * 450 + 3500));
 }
 
 start();
