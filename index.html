@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0a09">
+<title>For You — Love</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #0b0a09;
+    color: #ead9bd;
+    font-family: Georgia, serif;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+header {
+    padding: 32px 15px 5px;
+}
+
+.subtitle {
+    color: #a99170;
+    font: 10px Arial, sans-serif;
+    letter-spacing: 3px;
+}
+
+h1 {
+    font-size: clamp(30px, 8vw, 54px);
+    font-weight: normal;
+    letter-spacing: 7px;
+    margin: 18px 0;
+    color: #f1dfbd;
+}
+
+.ornament {
+    color: #c5a574;
+    letter-spacing: 7px;
+}
+
+.scene {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 440px;
+    margin: 0 auto;
+}
+
+#drawing {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.phrase {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    font-size: clamp(9px, 2.8vw, 12px);
+    line-height: 1.4;
+    color: #d9c4a3;
+    opacity: 0;
+    transition: opacity 1s ease;
+    text-shadow: 0 0 10px #8b6b42;
+}
+
+.phrase.show {
+    opacity: 1;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    opacity: 0;
+    transition: opacity 2s ease;
+    pointer-events: none;
+}
+
+.center.show {
+    opacity: 1;
+}
+
+.center h2 {
+    font-size: clamp(23px, 7vw, 37px);
+    font-weight: normal;
+    letter-spacing: 5px;
+    margin: 0 0 12px;
+    color: #f1dfbd;
+}
+
+.center span {
+    color: #c5a574;
+    font-size: 20px;
+}
+
+button {
+    background: transparent;
+    border: 1px solid #8c714c;
+    border-radius: 2px;
+    color: #e1c9a5;
+    padding: 13px 25px;
+    font: 12px Arial, sans-serif;
+    letter-spacing: 2px;
+    margin: 8px 0 25px;
+    cursor: pointer;
+}
+
+footer {
+    padding: 0 20px 30px;
+    color: #9d8768;
+    font-size: 13px;
+    font-style: italic;
+}
+
+@media (max-width: 360px) {
+    .scene {
+        height: 400px;
+    }
+
+    .phrase {
+        width: 85px;
+        font-size: 9px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="subtitle">
+        TWENTY LANGUAGES · ONE FEELING
+    </div>
+
+    <h1>I LOVE YOU</h1>
+
+    <div class="ornament">— ♡ —</div>
+</header>
+
+<div class="scene" id="scene">
+    <svg id="drawing" viewBox="0 0 500 440"
+         preserveAspectRatio="none">
+        <path id="heartLine"
+              d=""
+              fill="none"
+              stroke="#b89a6b"
+              stroke-width="1"
+              stroke-linecap="round"
+              opacity="0.8"/>
+    </svg>
+
+    <div class="center" id="center">
+        <h2>I LOVE YOU</h2>
+        <span>♡</span>
+    </div>
+</div>
+
+<button onclick="start()">REPLAY THE MOMENT</button>
+
+<footer>
+    One heart. Twenty languages. One feeling.
+</footer>
+
+<script>
+const phrases = [
+    "Я тебя люблю",
+    "I love you",
+    "Je t'aime",
+    "Te amo",
+    "Ich liebe dich",
+    "Ti amo",
+    "Eu te amo",
+    "我爱你",
+    "愛してる",
+    "사랑해",
+    "Seni seviyorum",
+    "أحبك",
+    "S'agapo",
+    "Kocham cię",
+    "Я тебе кохаю",
+    "Miluji tě",
+    "Jag älskar dig",
+    "Ik hou van jou",
+    "Te iubesc",
+    "मैं तुमसे प्यार करता हूँ"
+];
+
+const scene = document.getElementById("scene");
+const svg = document.getElementById("drawing");
+const line = document.getElementById("heartLine");
+const center = document.getElementById("center");
+
+let timers = [];
+
+function start() {
+    timers.forEach(clearTimeout);
+    timers = [];
+
+    scene.querySelectorAll(".phrase").forEach(el => {
+        el.remove();
+    });
+
+    center.classList.remove("show");
+
+    line.style.transition = "none";
+    line.style.strokeDasharray = "none";
+    line.style.strokeDashoffset = "0";
+
+    const width = scene.clientWidth;
+    const height = scene.clientHeight;
+
+    const centerX = width / 2;
+    const centerY = height / 2;
+
+    const scale = Math.min(width / 38, height / 32);
+
+    svg.setAttribute(
+        "viewBox",
+        "0 0 " + width + " " + height
+    );
+
+    let path = "";
+
+    for (let i = 0; i <= 240; i++) {
+        const t = 2 * Math.PI * i / 240;
+
+        const x = 16 * Math.pow(Math.sin(t), 3);
+
+        const y = 13 * Math.cos(t)
+                - 5 * Math.cos(2 * t)
+                - 2 * Math.cos(3 * t)
+                - Math.cos(4 * t);
+
+        const px = centerX + x * scale;
+        const py = centerY - y * scale;
+
+        path += (i === 0 ? "M" : "L")
+              + px + " " + py + " ";
+    }
+
+    line.setAttribute("d", path);
+
+    const length = line.getTotalLength();
+
+    line.style.strokeDasharray = length;
+    line.style.strokeDashoffset = length;
+
+    requestAnimationFrame(() => {
+        line.style.transition =
+            "stroke-dashoffset 4s ease";
+
+        line.style.strokeDashoffset = "0";
+    });
+
+    for (let i = 0; i < phrases.length; i++) {
+        const t = 2 * Math.PI * i / phrases.length;
+
+        const x = 16 * Math.pow(Math.sin(t), 3);
+
+        const y = 13 * Math.cos(t)
+                - 5 * Math.cos(2 * t)
+                - 2 * Math.cos(3 * t)
+                - Math.cos(4 * t);
+
+        const el = document.createElement("div");
+
+        el.className = "phrase";
+        el.textContent = phrases[i];
+
+        el.style.left =
+            (centerX + x * scale) / width * 100 + "%";
+
+        el.style.top =
+            (centerY - y * scale) / height * 100 + "%";
+
+        scene.appendChild(el);
+
+        const timer = setTimeout(() => {
+            el.classList.add("show");
+        }, 700 + i * 450);
+
+        timers.push(timer);
+    }
+
+    const finalTimer = setTimeout(() => {
+        center.classList.add("show");
+    }, 700 + phrases.length * 450);
+
+    timers.push(finalTimer);
+}
+
+start();
+</script>
+
+</body>
+</html>
