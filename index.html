@@ -126,7 +126,7 @@ footer {
     font-style: italic;
 }
 
-/* Финальное признание */
+/* Финальная сцена */
 #finale {
     position: fixed;
     inset: 0;
@@ -150,7 +150,7 @@ footer {
     max-width: 360px;
     width: 100%;
     border: 1px solid #6f593a;
-    padding: 35px 22px;
+    padding: 30px 22px;
     background: #100e0b;
     box-shadow: 0 0 40px #3a2816;
 }
@@ -169,10 +169,39 @@ footer {
 }
 
 .big-heart {
+    display: inline-block;
+    border: none;
+    background: transparent;
+    padding: 10px 25px;
+    margin: 10px 0;
     color: #c5a574;
-    font-size: 42px;
-    margin: 15px 0;
+    font-family: Georgia, serif;
+    font-size: 52px;
+    cursor: pointer;
+    transition: transform 0.4s, color 0.4s;
     animation: heartbeat 2s ease-in-out infinite;
+}
+
+.big-heart:active {
+    transform: scale(1.2);
+}
+
+.big-heart.open {
+    color: #e7b5a5;
+    transform: scale(1.15);
+}
+
+#secretMessage {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity 1.2s ease,
+                max-height 1.2s ease;
+}
+
+#secretMessage.show {
+    max-height: 220px;
+    opacity: 1;
 }
 
 .message p {
@@ -185,7 +214,7 @@ footer {
     color: #a99170;
     font-size: 13px;
     font-style: italic;
-    margin-top: 25px;
+    margin-top: 20px;
 }
 
 @keyframes heartbeat {
@@ -250,14 +279,25 @@ footer {
     <div class="message">
         <div class="small">JUST FOR YOU</div>
         <h2>Любимая</h2>
-        <div class="big-heart">♡</div>
-        <p>
-            Среди всех языков мира
-            моё любимое слово — ты.
-        </p>
-        <div class="signature">
-            Ты — моё самое красивое чувство.
+
+        <button
+            class="big-heart"
+            id="secretHeart"
+            onclick="revealSecret()"
+            aria-label="Открыть тайное признание">
+            ♡
+        </button>
+
+        <div id="secretMessage">
+            <p>
+                Я выбираю тебя.
+                Сегодня, завтра и всегда.
+            </p>
+            <div class="signature">
+                Ты — моё самое красивое чувство. ♥
+            </div>
         </div>
+
         <button onclick="start()">ЕЩЁ РАЗ ♥</button>
     </div>
 </div>
@@ -291,8 +331,17 @@ const svg = document.getElementById("drawing");
 const line = document.getElementById("heartLine");
 const center = document.getElementById("center");
 const finale = document.getElementById("finale");
+const secretHeart = document.getElementById("secretHeart");
+const secretMessage = document.getElementById("secretMessage");
 
 let timers = [];
+
+function revealSecret() {
+    secretHeart.classList.add("open");
+    secretHeart.textContent = "♥";
+    secretMessage.classList.add("show");
+    secretHeart.setAttribute("aria-label", "Признание открыто");
+}
 
 function start() {
     timers.forEach(clearTimeout);
@@ -300,6 +349,10 @@ function start() {
 
     finale.classList.remove("show");
     center.classList.remove("show");
+    secretMessage.classList.remove("show");
+    secretHeart.classList.remove("open");
+    secretHeart.textContent = "♡";
+    secretHeart.setAttribute("aria-label", "Открыть тайное признание");
 
     scene.querySelectorAll(".phrase").forEach(el => el.remove());
 
