@@ -32,15 +32,15 @@ body {
 }
 .heading {
     position: absolute;
+    z-index: 2;
     top: 5%;
     left: 0;
     width: 100%;
     text-align: center;
-    color: #b99a6a;
+    color: #d0b17e;
     font-size: 11px;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     line-height: 1.8;
-    opacity: 0.9;
     padding: 0 15px;
 }
 #drawing {
@@ -55,12 +55,12 @@ body {
 #heartLine {
     fill: none;
     stroke: #c5a574;
-    stroke-width: 1.6;
+    stroke-width: 1.8;
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-dasharray: 1200;
     stroke-dashoffset: 1200;
-    filter: drop-shadow(0 0 5px #c5a574);
+    filter: drop-shadow(0 0 6px #c5a574);
     animation: drawHeart 4s ease forwards;
 }
 @keyframes drawHeart {
@@ -68,46 +68,58 @@ body {
         stroke-dashoffset: 0;
     }
 }
+/* Горизонтальные, контрастные и читаемые фразы */
 .phrase {
     position: absolute;
-    transform: translate(-50%, -50%) rotate(var(--angle, 0deg));
-    transform-origin: center center;
-    color: #dfc79f;
-    font-size: clamp(10px, 2.8vw, 14px);
-    letter-spacing: 0.5px;
+    z-index: 3;
+    transform: translate(-50%, -50%);
+    max-width: calc(100vw - 24px);
+    padding: 5px 9px;
+    border: 1px solid rgba(197, 165, 116, 0.45);
+    border-radius: 5px;
+    background: rgba(12, 9, 7, 0.96);
+    color: #ffe3b0;
+    font-size: clamp(11px, 3vw, 14px);
+    font-weight: bold;
+    letter-spacing: 0.2px;
+    line-height: 1.4;
+    text-align: center;
     white-space: nowrap;
     opacity: 0;
-    text-shadow: 0 0 12px #b58c50;
-    animation: phraseAppear 3.2s ease forwards;
+    text-shadow: 0 0 8px rgba(197, 165, 116, 0.5);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
     pointer-events: none;
+    animation: phraseAppear 1.5s ease forwards;
 }
 @keyframes phraseAppear {
     0% {
         opacity: 0;
-        transform: translate(-50%, -50%) rotate(var(--angle)) scale(0.8);
+        transform: translate(-50%, -50%) scale(0.94);
     }
     20% {
         opacity: 1;
-        transform: translate(-50%, -50%) rotate(var(--angle)) scale(1);
+        transform: translate(-50%, -50%) scale(1);
     }
     75% {
         opacity: 1;
     }
     100% {
         opacity: 0;
-        transform: translate(-50%, -50%) rotate(var(--angle)) scale(1.05);
+        transform: translate(-50%, -50%) scale(1);
     }
 }
 #center {
     position: absolute;
+    z-index: 2;
     left: 50%;
     top: 48%;
     transform: translate(-50%, -50%);
     width: 100%;
+    padding: 0 10px;
     text-align: center;
     color: #f0d5a2;
     font-size: clamp(19px, 5vw, 30px);
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     text-shadow: 0 0 20px #c5a574;
     opacity: 0;
     transition: opacity 2s ease;
@@ -120,9 +132,9 @@ body {
     margin-top: 13px;
     padding: 0 15px;
     font-size: 10px;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     line-height: 1.8;
-    color: #a98c63;
+    color: #d0b17e;
 }
 #finale {
     position: absolute;
@@ -167,7 +179,7 @@ body {
     font-size: 10px;
     letter-spacing: 5px;
     line-height: 1.8;
-    color: #a98c63;
+    color: #c5a574;
     margin-bottom: 22px;
 }
 h2 {
@@ -253,7 +265,7 @@ h2 {
     border: 1px solid #8d7048;
     border-radius: 2px;
     background: transparent;
-    color: #d7bb8c;
+    color: #e4c797;
     font-family: Georgia, serif;
     font-size: 11px;
     letter-spacing: 3px;
@@ -270,7 +282,7 @@ h2 {
     .heading {
         top: 6%;
         font-size: 9px;
-        letter-spacing: 2px;
+        letter-spacing: 1.5px;
     }
     #drawing {
         width: 95vw;
@@ -279,11 +291,11 @@ h2 {
     }
     #center {
         top: 46%;
-        letter-spacing: 2px;
+        letter-spacing: 1.5px;
     }
     .phrase {
-        letter-spacing: 0;
-        font-size: 10px;
+        font-size: 11px;
+        padding: 4px 6px;
     }
     .message {
         max-width: 340px;
@@ -351,7 +363,6 @@ h2 {
 </div>
 <script>
 const scene = document.getElementById("scene");
-const drawing = document.getElementById("drawing");
 const heartLine = document.getElementById("heartLine");
 const center = document.getElementById("center");
 const finale = document.getElementById("finale");
@@ -381,6 +392,7 @@ const phrases = [
     "أحبك",
     "Σ' αγαπώ"
 ];
+const phraseInterval = 1550;
 function clearTimers() {
     timers.forEach(function(timer) {
         clearTimeout(timer);
@@ -389,46 +401,29 @@ function clearTimers() {
 }
 function showPhrase(text, index) {
     const totalLength = heartLine.getTotalLength();
+    // Распределяем фразы по всей длине линии сердца.
     const distance = totalLength * index / phrases.length;
     const point = heartLine.getPointAtLength(distance);
-    const before = heartLine.getPointAtLength(
-        Math.max(0, distance - 1)
-    );
-    const after = heartLine.getPointAtLength(
-        Math.min(totalLength, distance + 1)
-    );
     const matrix = heartLine.getScreenCTM();
     if (!matrix) {
         return;
     }
-    const p = new DOMPoint(point.x, point.y)
-        .matrixTransform(matrix);
-    const a = new DOMPoint(before.x, before.y)
-        .matrixTransform(matrix);
-    const b = new DOMPoint(after.x, after.y)
+    const screenPoint = new DOMPoint(point.x, point.y)
         .matrixTransform(matrix);
     const sceneRect = scene.getBoundingClientRect();
-    let angle = Math.atan2(
-        b.y - a.y,
-        b.x - a.x
-    ) * 180 / Math.PI;
-    // Сохраняем читаемое направление текста.
-    if (angle > 90) {
-        angle -= 180;
-    }
-    if (angle < -90) {
-        angle += 180;
-    }
     const element = document.createElement("div");
     element.className = "phrase";
     element.textContent = text;
-    element.style.left = (p.x - sceneRect.left) + "px";
-    element.style.top = (p.y - sceneRect.top) + "px";
-    element.style.setProperty("--angle", angle + "deg");
+    // Позиция берётся с настоящего контура,
+    // но текст остаётся горизонтальным.
+    element.style.left =
+        (screenPoint.x - sceneRect.left) + "px";
+    element.style.top =
+        (screenPoint.y - sceneRect.top) + "px";
     scene.appendChild(element);
     const removeTimer = setTimeout(function() {
         element.remove();
-    }, 3300);
+    }, 1500);
     timers.push(removeTimer);
 }
 function revealSecret() {
@@ -456,27 +451,27 @@ function start() {
     scene.querySelectorAll(".phrase").forEach(function(element) {
         element.remove();
     });
-    // Повторно запускаем рисование сердца.
+    // Перезапускаем рисование сердца.
     heartLine.style.animation = "none";
     void heartLine.getBoundingClientRect();
     heartLine.style.animation = "drawHeart 4s ease forwards";
-    const layoutTimer = setTimeout(function() {
-        phrases.forEach(function(text, index) {
-            const phraseTimer = setTimeout(function() {
-                showPhrase(text, index);
-            }, 600 + index * 650);
-            timers.push(phraseTimer);
-        });
-        const centerTimer = setTimeout(function() {
-            center.classList.add("show");
-        }, 6500);
-        timers.push(centerTimer);
-        const finaleTimer = setTimeout(function() {
-            finale.classList.add("show");
-        }, 600 + phrases.length * 650 + 3500);
-        timers.push(finaleTimer);
-    }, 100);
-    timers.push(layoutTimer);
+    // Фразы появляются по одной, не накладываясь друг на друга.
+    phrases.forEach(function(text, index) {
+        const phraseTimer = setTimeout(function() {
+            showPhrase(text, index);
+        }, 500 + index * phraseInterval);
+        timers.push(phraseTimer);
+    });
+    // Центральное признание появляется после фраз.
+    const centerTimer = setTimeout(function() {
+        center.classList.add("show");
+    }, 500 + phrases.length * phraseInterval + 500);
+    timers.push(centerTimer);
+    // Финальная сцена появляется последней.
+    const finaleTimer = setTimeout(function() {
+        finale.classList.add("show");
+    }, 500 + phrases.length * phraseInterval + 2500);
+    timers.push(finaleTimer);
 }
 secretHeart.addEventListener("click", function(event) {
     event.preventDefault();
