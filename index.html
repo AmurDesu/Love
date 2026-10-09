@@ -4,12 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Для тебя, любимая ♥</title>
-
 <style>
 * {
     box-sizing: border-box;
 }
-
 body {
     margin: 0;
     min-height: 100vh;
@@ -18,7 +16,6 @@ body {
     font-family: Georgia, "Times New Roman", serif;
     overflow: hidden;
 }
-
 #scene {
     position: relative;
     width: 100%;
@@ -33,7 +30,6 @@ body {
         #050505 100%
     );
 }
-
 .heading {
     position: absolute;
     z-index: 2;
@@ -47,7 +43,6 @@ body {
     line-height: 1.8;
     padding: 0 15px;
 }
-
 #drawing {
     position: absolute;
     width: min(78vw, 430px);
@@ -57,7 +52,6 @@ body {
     transform: translate(-50%, -50%);
     overflow: visible;
 }
-
 #heartLine {
     fill: none;
     stroke: #c5a574;
@@ -69,58 +63,55 @@ body {
     filter: drop-shadow(0 0 6px #c5a574);
     animation: drawHeart 4s ease forwards;
 }
-
 @keyframes drawHeart {
     to {
         stroke-dashoffset: 0;
     }
 }
-
-/* Горизонтальные, контрастные и читаемые фразы */
+/* Читаемые горизонтальные фразы */
 .phrase {
     position: absolute;
-    z-index: 3;
+    z-index: 5;
     transform: translate(-50%, -50%);
-    max-width: calc(100vw - 24px);
-    padding: 5px 9px;
-    border: 1px solid rgba(197, 165, 116, 0.45);
-    border-radius: 5px;
-    background: rgba(12, 9, 7, 0.96);
-    color: #ffe3b0;
-    font-size: clamp(11px, 3vw, 14px);
+    width: max-content;
+    max-width: min(280px, calc(100vw - 32px));
+    padding: 8px 12px;
+    border: 1px solid rgba(220, 183, 123, 0.65);
+    border-radius: 8px;
+    background: #100c09;
+    color: #ffe5b5;
+    font-family: Georgia, serif;
+    font-size: clamp(13px, 3.8vw, 17px);
     font-weight: bold;
-    letter-spacing: 0.2px;
-    line-height: 1.4;
+    line-height: 1.5;
+    letter-spacing: 0;
     text-align: center;
-    white-space: nowrap;
+    white-space: normal;
+    overflow-wrap: anywhere;
     opacity: 0;
-    text-shadow: 0 0 8px rgba(197, 165, 116, 0.5);
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
+    visibility: hidden;
+    text-shadow: 0 0 8px rgba(197, 165, 116, 0.35);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
     pointer-events: none;
-    animation: phraseAppear 1.5s ease forwards;
+    animation: phraseAppear 3s ease forwards;
 }
-
 @keyframes phraseAppear {
     0% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0.94);
+        visibility: visible;
+        transform: translate(-50%, -50%) scale(0.95);
     }
-
-    20% {
+    15%, 80% {
         opacity: 1;
+        visibility: visible;
         transform: translate(-50%, -50%) scale(1);
     }
-
-    75% {
-        opacity: 1;
-    }
-
     100% {
         opacity: 0;
+        visibility: hidden;
         transform: translate(-50%, -50%) scale(1);
     }
 }
-
 #center {
     position: absolute;
     z-index: 2;
@@ -138,11 +129,9 @@ body {
     transition: opacity 2s ease;
     pointer-events: none;
 }
-
 #center.show {
     opacity: 1;
 }
-
 .subtitle {
     margin-top: 13px;
     padding: 0 15px;
@@ -151,7 +140,6 @@ body {
     line-height: 1.8;
     color: #d0b17e;
 }
-
 #finale {
     position: absolute;
     inset: 0;
@@ -170,32 +158,27 @@ body {
     pointer-events: none;
     transition: opacity 2s ease, visibility 2s ease;
 }
-
 #finale.show {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
 }
-
 .message {
     width: 100%;
     max-width: 420px;
     text-align: center;
     animation: messageAppear 2s ease both;
 }
-
 @keyframes messageAppear {
     from {
         transform: translateY(15px);
         opacity: 0;
     }
-
     to {
         transform: translateY(0);
         opacity: 1;
     }
 }
-
 .small {
     font-size: 10px;
     letter-spacing: 5px;
@@ -203,7 +186,6 @@ body {
     color: #c5a574;
     margin-bottom: 22px;
 }
-
 h2 {
     margin: 0;
     color: #ead2a6;
@@ -212,7 +194,6 @@ h2 {
     letter-spacing: 2px;
     text-shadow: 0 0 25px rgba(197, 165, 116, 0.4);
 }
-
 .big-heart {
     display: inline-flex;
     align-items: center;
@@ -237,33 +218,27 @@ h2 {
     animation: heartbeat 1.8s ease-in-out infinite;
     transition: color 0.4s, transform 0.4s;
 }
-
 .big-heart:focus-visible {
     outline: 1px solid #c5a574;
     border-radius: 15px;
 }
-
 .big-heart:active {
     transform: scale(1.2);
 }
-
 .big-heart.open {
     color: #f0b8a9;
     transform: scale(1.15);
     animation: none;
     text-shadow: 0 0 25px rgba(240, 184, 169, 0.8);
 }
-
 @keyframes heartbeat {
     0%, 100% {
         transform: scale(1);
     }
-
     50% {
         transform: scale(1.1);
     }
 }
-
 #secretMessage {
     max-height: 0;
     opacity: 0;
@@ -273,16 +248,13 @@ h2 {
     font-size: 17px;
     line-height: 1.8;
 }
-
 #secretMessage.show {
     max-height: 250px;
     opacity: 1;
 }
-
 #secretMessage p {
     margin: 5px 0 15px;
 }
-
 .signature {
     color: #c5a574;
     font-size: 14px;
@@ -290,7 +262,6 @@ h2 {
     padding-bottom: 8px;
     line-height: 1.8;
 }
-
 .replay {
     display: block;
     margin: 25px auto 0;
@@ -307,44 +278,36 @@ h2 {
     -webkit-tap-highlight-color: transparent;
     transition: background 0.3s, color 0.3s;
 }
-
 .replay:active {
     background: #c5a574;
     color: #080706;
 }
-
 @media (max-width: 480px) {
     .heading {
         top: 6%;
         font-size: 9px;
         letter-spacing: 1.5px;
     }
-
     #drawing {
         width: 95vw;
         height: 65vh;
         top: 46%;
     }
-
     #center {
         top: 46%;
         letter-spacing: 1.5px;
     }
-
     .phrase {
-        font-size: 11px;
-        padding: 4px 6px;
+        font-size: 13px;
+        padding: 7px 9px;
     }
-
     .message {
         max-width: 340px;
     }
-
     #secretMessage {
         font-size: 16px;
     }
 }
-
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -353,20 +316,15 @@ h2 {
 }
 </style>
 </head>
-
 <body>
-
 <div id="scene">
-
     <div class="heading">
         ТЫСЯЧА СПОСОБОВ СКАЗАТЬ «Я ТЕБЯ ЛЮБЛЮ»
     </div>
-
     <svg id="drawing"
          viewBox="0 0 300 270"
          xmlns="http://www.w3.org/2000/svg"
          aria-hidden="true">
-
         <path id="heartLine"
             d="M150 245
                C130 225 20 155 20 85
@@ -374,21 +332,16 @@ h2 {
                C200 5 280 20 280 85
                C280 155 170 225 150 245 Z" />
     </svg>
-
     <div id="center">
         Я ТЕБЯ ЛЮБЛЮ
         <div class="subtitle">
             БОЛЬШЕ, ЧЕМ МОЖНО ВЫРАЗИТЬ СЛОВАМИ
         </div>
     </div>
-
     <div id="finale">
         <div class="message">
-
             <div class="small">ТОЛЬКО ДЛЯ ТЕБЯ</div>
-
             <h2>Любимая</h2>
-
             <button
                 type="button"
                 class="big-heart"
@@ -397,27 +350,21 @@ h2 {
                 aria-expanded="false">
                 ♡
             </button>
-
             <div id="secretMessage" aria-live="polite">
                 <p>
                     Я выбираю тебя.<br>
                     Сегодня, завтра и всегда.
                 </p>
-
                 <div class="signature">
                     Ты — моё самое красивое чувство. ♥
                 </div>
             </div>
-
             <button type="button" class="replay" id="replayButton">
                 ЕЩЁ РАЗ ♥
             </button>
-
         </div>
     </div>
-
 </div>
-
 <script>
 const scene = document.getElementById("scene");
 const heartLine = document.getElementById("heartLine");
@@ -426,9 +373,7 @@ const finale = document.getElementById("finale");
 const secretHeart = document.getElementById("secretHeart");
 const secretMessage = document.getElementById("secretMessage");
 const replayButton = document.getElementById("replayButton");
-
 let timers = [];
-
 const phrases = [
     "I love you",
     "Я тебя люблю",
@@ -451,129 +396,103 @@ const phrases = [
     "أحبك",
     "Σ' αγαπώ"
 ];
-
+// Интервал между появлениями фраз.
 const phraseInterval = 1550;
-
 function clearTimers() {
     timers.forEach(function(timer) {
         clearTimeout(timer);
     });
-
     timers = [];
 }
-
 function showPhrase(text, index) {
     const totalLength = heartLine.getTotalLength();
-
-    // Распределяем фразы по всей длине линии сердца.
     const distance = totalLength * index / phrases.length;
-
     const point = heartLine.getPointAtLength(distance);
     const matrix = heartLine.getScreenCTM();
-
-    if (!matrix) {
-        return;
-    }
-
+    if (!matrix) return;
     const screenPoint = new DOMPoint(point.x, point.y)
         .matrixTransform(matrix);
-
     const sceneRect = scene.getBoundingClientRect();
-
+    // Ограничиваем положение фраз, чтобы они не обрезались.
+    const marginX = Math.min(150, sceneRect.width / 2 - 8);
+    const marginY = 45;
+    const rawX = screenPoint.x - sceneRect.left;
+    const rawY = screenPoint.y - sceneRect.top;
+    const x = Math.max(
+        marginX,
+        Math.min(sceneRect.width - marginX, rawX)
+    );
+    const y = Math.max(
+        marginY,
+        Math.min(sceneRect.height - marginY, rawY)
+    );
     const element = document.createElement("div");
-
     element.className = "phrase";
     element.textContent = text;
-
-    // Позиция берётся с настоящего контура,
-    // но текст остаётся горизонтальным.
-    element.style.left =
-        (screenPoint.x - sceneRect.left) + "px";
-
-    element.style.top =
-        (screenPoint.y - sceneRect.top) + "px";
-
+    element.style.left = x + "px";
+    element.style.top = y + "px";
+    // Текст остаётся горизонтальным.
     scene.appendChild(element);
-
     const removeTimer = setTimeout(function() {
         element.remove();
-    }, 1500);
-
+    }, 3000);
     timers.push(removeTimer);
 }
-
 function revealSecret() {
     secretHeart.classList.add("open");
     secretHeart.textContent = "♥";
     secretMessage.classList.add("show");
-
     secretHeart.setAttribute("aria-expanded", "true");
     secretHeart.setAttribute("aria-label", "Признание открыто");
 }
-
 function resetSecret() {
     secretHeart.classList.remove("open");
     secretHeart.textContent = "♡";
     secretMessage.classList.remove("show");
-
     secretHeart.setAttribute("aria-expanded", "false");
     secretHeart.setAttribute(
         "aria-label",
         "Открыть признание"
     );
 }
-
 function start() {
     clearTimers();
-
     finale.classList.remove("show");
     center.classList.remove("show");
     resetSecret();
-
     scene.querySelectorAll(".phrase").forEach(function(element) {
         element.remove();
     });
-
     // Перезапускаем рисование сердца.
     heartLine.style.animation = "none";
     void heartLine.getBoundingClientRect();
     heartLine.style.animation = "drawHeart 4s ease forwards";
-
-    // Фразы появляются по одной, не накладываясь друг на друга.
+    // Фразы появляются последовательно.
     phrases.forEach(function(text, index) {
         const phraseTimer = setTimeout(function() {
             showPhrase(text, index);
         }, 500 + index * phraseInterval);
-
         timers.push(phraseTimer);
     });
-
     // Центральное признание появляется после фраз.
     const centerTimer = setTimeout(function() {
         center.classList.add("show");
     }, 500 + phrases.length * phraseInterval + 500);
-
     timers.push(centerTimer);
-
     // Финальная сцена появляется последней.
     const finaleTimer = setTimeout(function() {
         finale.classList.add("show");
     }, 500 + phrases.length * phraseInterval + 2500);
-
     timers.push(finaleTimer);
 }
-
 secretHeart.addEventListener("click", function(event) {
     event.preventDefault();
     revealSecret();
 });
-
 replayButton.addEventListener("click", function() {
     start();
 });
-
 start();
 </script>
-
 </body>
 </html>
