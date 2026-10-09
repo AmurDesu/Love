@@ -1,340 +1,344 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Для моей,любимой ♥</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Для тебя, любимая ♥</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<style>
+* {
+    box-sizing: border-box;
+}
 
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background: #080706;
-            color: #c5a574;
-            font-family: Georgia, "Times New Roman", serif;
-            overflow: hidden;
-        }
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #080706;
+    color: #c5a574;
+    font-family: Georgia, "Times New Roman", serif;
+    overflow: hidden;
+}
 
-        #scene {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            height: 100dvh;
-            min-height: 500px;
-            overflow: hidden;
-            background:
-                radial-gradient(
-                    ellipse at center,
-                    #21170f 0%,
-                    #100c09 45%,
-                    #050505 100%
-                );
-        }
+#scene {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 500px;
+    overflow: hidden;
+    background: radial-gradient(
+        ellipse at center,
+        #21170f 0%,
+        #100c09 45%,
+        #050505 100%
+    );
+}
 
-        .heading {
-            position: absolute;
-            top: 5%;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            color: #b99a6a;
-            font-size: 11px;
-            letter-spacing: 5px;
-            opacity: 0.8;
-            padding: 0 10px;
-        }
+.heading {
+    position: absolute;
+    top: 5%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: #b99a6a;
+    font-size: 11px;
+    letter-spacing: 3px;
+    line-height: 1.8;
+    opacity: 0.9;
+    padding: 0 15px;
+}
 
-        #drawing {
-            position: absolute;
-            width: min(78vw, 430px);
-            height: min(70vh, 430px);
-            left: 50%;
-            top: 48%;
-            transform: translate(-50%, -50%);
-            overflow: visible;
-        }
+#drawing {
+    position: absolute;
+    width: min(78vw, 430px);
+    height: min(70vh, 430px);
+    left: 50%;
+    top: 48%;
+    transform: translate(-50%, -50%);
+    overflow: visible;
+}
 
-        #heartLine {
-            fill: none;
-            stroke: #c5a574;
-            stroke-width: 1.6;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            stroke-dasharray: 1200;
-            stroke-dashoffset: 1200;
-            filter: drop-shadow(0 0 5px #c5a574);
-            animation: drawHeart 4s ease forwards;
-        }
+#heartLine {
+    fill: none;
+    stroke: #c5a574;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
+    filter: drop-shadow(0 0 5px #c5a574);
+    animation: drawHeart 4s ease forwards;
+}
 
-        @keyframes drawHeart {
-            to {
-                stroke-dashoffset: 0;
-            }
-        }
+@keyframes drawHeart {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
 
-        .phrase {
-            position: absolute;
-            transform: translate(-50%, -50%);
-            color: #dfc79f;
-            font-size: clamp(11px, 2.8vw, 15px);
-            letter-spacing: 1px;
-            white-space: nowrap;
-            opacity: 0;
-            text-shadow: 0 0 12px #b58c50;
-            animation: phraseAppear 2.5s ease forwards;
-            pointer-events: none;
-        }
+.phrase {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    color: #dfc79f;
+    font-size: clamp(10px, 2.8vw, 14px);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    opacity: 0;
+    text-shadow: 0 0 12px #b58c50;
+    animation: phraseAppear 3.2s ease forwards;
+    pointer-events: none;
+}
 
-        @keyframes phraseAppear {
-            0% {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0.8);
-            }
+@keyframes phraseAppear {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
 
-            25% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
-            }
+    20% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
 
-            75% {
-                opacity: 1;
-            }
+    75% {
+        opacity: 1;
+    }
 
-            100% {
-                opacity: 0;
-            }
-        }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+}
 
-        #center {
-            position: absolute;
-            left: 50%;
-            top: 48%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            text-align: center;
-            color: #f0d5a2;
-            font-size: clamp(20px, 5vw, 31px);
-            letter-spacing: 5px;
-            text-shadow: 0 0 20px #c5a574;
-            opacity: 0;
-            transition: opacity 2s ease;
-            pointer-events: none;
-        }
+#center {
+    position: absolute;
+    left: 50%;
+    top: 48%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    color: #f0d5a2;
+    font-size: clamp(19px, 5vw, 30px);
+    letter-spacing: 3px;
+    text-shadow: 0 0 20px #c5a574;
+    opacity: 0;
+    transition: opacity 2s ease;
+    pointer-events: none;
+}
 
-        #center.show {
-            opacity: 1;
-        }
+#center.show {
+    opacity: 1;
+}
 
-        .subtitle {
-            margin-top: 13px;
-            font-size: 10px;
-            letter-spacing: 4px;
-            color: #a98c63;
-        }
+.subtitle {
+    margin-top: 13px;
+    padding: 0 15px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    line-height: 1.8;
+    color: #a98c63;
+}
 
-        #finale {
-            position: absolute;
-            inset: 0;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background:
-                radial-gradient(
-                    ellipse at center,
-                    rgba(39, 25, 15, 0.98),
-                    rgba(5, 5, 5, 0.99) 75%
-                );
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transition: opacity 2s ease, visibility 2s ease;
-        }
+#finale {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(39, 25, 15, 0.98),
+        rgba(5, 5, 5, 0.99) 75%
+    );
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 2s ease, visibility 2s ease;
+}
 
-        #finale.show {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-        }
+#finale.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
 
-        .message {
-            width: 100%;
-            max-width: 420px;
-            text-align: center;
-            animation: messageAppear 2s ease both;
-        }
+.message {
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    animation: messageAppear 2s ease both;
+}
 
-        @keyframes messageAppear {
-            from {
-                transform: translateY(15px);
-                opacity: 0;
-            }
+@keyframes messageAppear {
+    from {
+        transform: translateY(15px);
+        opacity: 0;
+    }
 
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
 
-        .small {
-            font-size: 10px;
-            letter-spacing: 6px;
-            color: #a98c63;
-            margin-bottom: 22px;
-        }
+.small {
+    font-size: 10px;
+    letter-spacing: 5px;
+    line-height: 1.8;
+    color: #a98c63;
+    margin-bottom: 22px;
+}
 
-        h2 {
-            margin: 0;
-            color: #ead2a6;
-            font-size: clamp(34px, 9vw, 48px);
-            font-weight: normal;
-            letter-spacing: 2px;
-            text-shadow: 0 0 25px rgba(197, 165, 116, 0.4);
-        }
+h2 {
+    margin: 0;
+    color: #ead2a6;
+    font-size: clamp(34px, 9vw, 48px);
+    font-weight: normal;
+    letter-spacing: 2px;
+    text-shadow: 0 0 25px rgba(197, 165, 116, 0.4);
+}
 
-        .big-heart {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 100px;
-            height: 90px;
-            border: none;
-            outline: none;
-            background: transparent;
-            padding: 0;
-            margin: 20px 0;
-            color: #c5a574;
-            font-family: Georgia, serif;
-            font-size: 66px;
-            line-height: 1;
-            cursor: pointer;
-            pointer-events: auto;
-            position: relative;
-            z-index: 20;
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
-            animation: heartbeat 1.8s ease-in-out infinite;
-            transition: color 0.4s, transform 0.4s;
-        }
+.big-heart {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 90px;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0;
+    margin: 20px 0;
+    color: #c5a574;
+    font-family: Georgia, serif;
+    font-size: 66px;
+    line-height: 1;
+    cursor: pointer;
+    pointer-events: auto;
+    position: relative;
+    z-index: 20;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    animation: heartbeat 1.8s ease-in-out infinite;
+    transition: color 0.4s, transform 0.4s;
+}
 
-        .big-heart:focus-visible {
-            outline: 1px solid #c5a574;
-            border-radius: 15px;
-        }
+.big-heart:focus-visible {
+    outline: 1px solid #c5a574;
+    border-radius: 15px;
+}
 
-        .big-heart:active {
-            transform: scale(1.2);
-        }
+.big-heart:active {
+    transform: scale(1.2);
+}
 
-        .big-heart.open {
-            color: #f0b8a9;
-            transform: scale(1.15);
-            animation: none;
-            text-shadow: 0 0 25px rgba(240, 184, 169, 0.8);
-        }
+.big-heart.open {
+    color: #f0b8a9;
+    transform: scale(1.15);
+    animation: none;
+    text-shadow: 0 0 25px rgba(240, 184, 169, 0.8);
+}
 
-        @keyframes heartbeat {
-            0%, 100% {
-                transform: scale(1);
-            }
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
 
-            50% {
-                transform: scale(1.1);
-            }
-        }
+    50% {
+        transform: scale(1.1);
+    }
+}
 
-        #secretMessage {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: opacity 1.2s ease, max-height 1.2s ease;
-            color: #e7d5b8;
-            font-size: 17px;
-            line-height: 1.8;
-        }
+#secretMessage {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity 1.2s ease, max-height 1.2s ease;
+    color: #e7d5b8;
+    font-size: 17px;
+    line-height: 1.8;
+}
 
-        #secretMessage.show {
-            max-height: 250px;
-            opacity: 1;
-        }
+#secretMessage.show {
+    max-height: 250px;
+    opacity: 1;
+}
 
-        #secretMessage p {
-            margin: 5px 0 15px;
-        }
+#secretMessage p {
+    margin: 5px 0 15px;
+}
 
-        .signature {
-            color: #c5a574;
-            font-size: 14px;
-            font-style: italic;
-            padding-bottom: 8px;
-        }
+.signature {
+    color: #c5a574;
+    font-size: 14px;
+    font-style: italic;
+    padding-bottom: 8px;
+    line-height: 1.8;
+}
 
-        .replay {
-            display: block;
-            margin: 25px auto 0;
-            padding: 13px 24px;
-            border: 1px solid #8d7048;
-            border-radius: 2px;
-            background: transparent;
-            color: #d7bb8c;
-            font-family: Georgia, serif;
-            font-size: 11px;
-            letter-spacing: 3px;
-            cursor: pointer;
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
-            transition: background 0.3s, color 0.3s;
-        }
+.replay {
+    display: block;
+    margin: 25px auto 0;
+    padding: 13px 24px;
+    border: 1px solid #8d7048;
+    border-radius: 2px;
+    background: transparent;
+    color: #d7bb8c;
+    font-family: Georgia, serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.3s, color 0.3s;
+}
 
-        .replay:active {
-            background: #c5a574;
-            color: #080706;
-        }
+.replay:active {
+    background: #c5a574;
+    color: #080706;
+}
 
-        @media (max-width: 480px) {
-            .heading {
-                top: 7%;
-                font-size: 9px;
-                letter-spacing: 3px;
-            }
+@media (max-width: 480px) {
+    .heading {
+        top: 6%;
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
 
-            #drawing {
-                width: 95vw;
-                height: 65vh;
-                top: 46%;
-            }
+    #drawing {
+        width: 95vw;
+        height: 65vh;
+        top: 46%;
+    }
 
-            #center {
-                top: 46%;
-                letter-spacing: 3px;
-            }
+    #center {
+        top: 46%;
+        letter-spacing: 2px;
+    }
 
-            .phrase {
-                letter-spacing: 0;
-                font-size: 11px;
-            }
+    .phrase {
+        letter-spacing: 0;
+        font-size: 10px;
+    }
 
-            .message {
-                max-width: 340px;
-            }
+    .message {
+        max-width: 340px;
+    }
 
-            #secretMessage {
-                font-size: 16px;
-            }
-        }
+    #secretMessage {
+        font-size: 16px;
+    }
+}
 
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-    </style>
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+</style>
 </head>
 
 <body>
@@ -342,10 +346,11 @@
 <div id="scene">
 
     <div class="heading">
-        ТЫСЯЧА СПОСОБОВ СКАЗАТЬ, ЧТО Я ЛЮБЛЮ ТЕБЯ
+        ТЫСЯЧА СПОСОБОВ СКАЗАТЬ «Я ТЕБЯ ЛЮБЛЮ»
     </div>
 
-    <svg id="drawing" viewBox="0 0 300 270"
+    <svg id="drawing"
+         viewBox="0 0 300 270"
          xmlns="http://www.w3.org/2000/svg"
          aria-hidden="true">
 
@@ -358,14 +363,16 @@
     </svg>
 
     <div id="center">
-        Я ЛЮБЛЮ ТЕБЯ
-        <div class="subtitle">БОЛЬШЕ, ЧЕМ МОЖНО ВЫРАЗИТЬ СЛОВАМИ</div>
+        Я ТЕБЯ ЛЮБЛЮ
+        <div class="subtitle">
+            БОЛЬШЕ, ЧЕМ МОЖНО ВЫРАЗИТЬ СЛОВАМИ
+        </div>
     </div>
 
     <div id="finale">
         <div class="message">
 
-            <div class="small">ДЛЯ ТЕБЯ</div>
+            <div class="small">ТОЛЬКО ДЛЯ ТЕБЯ</div>
 
             <h2>Любимая</h2>
 
@@ -373,7 +380,7 @@
                 type="button"
                 class="big-heart"
                 id="secretHeart"
-                aria-label="Открыть тайное признание"
+                aria-label="Открыть признание"
                 aria-expanded="false">
                 ♡
             </button>
@@ -399,136 +406,164 @@
 </div>
 
 <script>
-    const scene = document.getElementById("scene");
-    const center = document.getElementById("center");
-    const finale = document.getElementById("finale");
-    const secretHeart = document.getElementById("secretHeart");
-    const secretMessage = document.getElementById("secretMessage");
-    const replayButton = document.getElementById("replayButton");
-    const heartLine = document.getElementById("heartLine");
+const scene = document.getElementById("scene");
+const drawing = document.getElementById("drawing");
+const heartLine = document.getElementById("heartLine");
+const center = document.getElementById("center");
+const finale = document.getElementById("finale");
+const secretHeart = document.getElementById("secretHeart");
+const secretMessage = document.getElementById("secretMessage");
+const replayButton = document.getElementById("replayButton");
 
-    let timers = [];
+let timers = [];
 
-    const phrases = [
-        { text: "I love you", x: 50, y: 23 },
-        { text: "Я тебя люблю", x: 25, y: 31 },
-        { text: "Je t'aime", x: 75, y: 31 },
-        { text: "Te amo", x: 17, y: 42 },
-        { text: "Ti amo", x: 83, y: 42 },
-        { text: "Ich liebe dich", x: 25, y: 52 },
-        { text: "愛してる", x: 75, y: 52 },
-        { text: "사랑해", x: 20, y: 63 },
-        { text: "Eu te amo", x: 80, y: 63 },
-        { text: "我爱你", x: 30, y: 72 },
-        { text: "Я кохаю тебе", x: 70, y: 72 },
-        { text: "Seni seviyorum", x: 50, y: 80 },
-        { text: "Mahal kita", x: 15, y: 75 },
-        { text: "Ik hou van jou", x: 85, y: 75 },
-        { text: "Jeg elsker deg", x: 12, y: 53 },
-        { text: "Kocham cię", x: 88, y: 53 },
-        { text: "Aš tave myliu", x: 32, y: 38 },
-        { text: "Minä rakastan sinua", x: 68, y: 38 },
-        { text: "أحبك", x: 35, y: 61 },
-        { text: "Σ' αγαπώ", x: 65, y: 61 }
-    ];
+const phrases = [
+    "I love you",
+    "Я тебя люблю",
+    "Je t'aime",
+    "Te amo",
+    "Ti amo",
+    "Ich liebe dich",
+    "愛してる",
+    "사랑해",
+    "Eu te amo",
+    "我爱你",
+    "Я кохаю тебе",
+    "Seni seviyorum",
+    "Mahal kita",
+    "Ik hou van jou",
+    "Jeg elsker deg",
+    "Kocham cię",
+    "Aš tave myliu",
+    "Minä rakastan sinua",
+    "أحبك",
+    "Σ' αγαπώ"
+];
 
-    function clearTimers() {
-        timers.forEach(function(timer) {
-            clearTimeout(timer);
-        });
+function clearTimers() {
+    timers.forEach(function(timer) {
+        clearTimeout(timer);
+    });
 
-        timers = [];
+    timers = [];
+}
+
+function getHeartPoint(distance) {
+    const point = heartLine.getPointAtLength(distance);
+    const matrix = heartLine.getScreenCTM();
+
+    if (!matrix) {
+        return null;
     }
 
-    function revealSecret() {
-        secretHeart.classList.add("open");
-        secretHeart.textContent = "♥";
-        secretMessage.classList.add("show");
+    const screenPoint = new DOMPoint(point.x, point.y)
+        .matrixTransform(matrix);
 
-        secretHeart.setAttribute("aria-expanded", "true");
-        secretHeart.setAttribute("aria-label", "Признание открыто");
+    const sceneRect = scene.getBoundingClientRect();
+
+    return {
+        x: screenPoint.x - sceneRect.left,
+        y: screenPoint.y - sceneRect.top
+    };
+}
+
+function showPhrase(text, index) {
+    const totalLength = heartLine.getTotalLength();
+    const distance = totalLength * index / phrases.length;
+    const point = getHeartPoint(distance);
+
+    if (!point) {
+        return;
     }
 
-    function resetSecret() {
-        secretHeart.classList.remove("open");
-        secretHeart.textContent = "♡";
-        secretMessage.classList.remove("show");
+    const element = document.createElement("div");
+    element.className = "phrase";
+    element.textContent = text;
 
-        secretHeart.setAttribute("aria-expanded", "false");
-        secretHeart.setAttribute(
-            "aria-label",
-            "Открыть тайное признание"
-        );
-    }
+    element.style.left = point.x + "px";
+    element.style.top = point.y + "px";
 
-    function start() {
-        clearTimers();
+    scene.appendChild(element);
 
-        finale.classList.remove("show");
-        center.classList.remove("show");
+    const removeTimer = setTimeout(function() {
+        element.remove();
+    }, 3300);
 
-        resetSecret();
+    timers.push(removeTimer);
+}
 
-        scene.querySelectorAll(".phrase").forEach(function(element) {
-            element.remove();
+function revealSecret() {
+    secretHeart.classList.add("open");
+    secretHeart.textContent = "♥";
+    secretMessage.classList.add("show");
+
+    secretHeart.setAttribute("aria-expanded", "true");
+    secretHeart.setAttribute("aria-label", "Признание открыто");
+}
+
+function resetSecret() {
+    secretHeart.classList.remove("open");
+    secretHeart.textContent = "♡";
+    secretMessage.classList.remove("show");
+
+    secretHeart.setAttribute("aria-expanded", "false");
+    secretHeart.setAttribute(
+        "aria-label",
+        "Открыть признание"
+    );
+}
+
+function start() {
+    clearTimers();
+
+    finale.classList.remove("show");
+    center.classList.remove("show");
+    resetSecret();
+
+    scene.querySelectorAll(".phrase").forEach(function(element) {
+        element.remove();
+    });
+
+    heartLine.style.animation = "none";
+    void heartLine.getBoundingClientRect();
+    heartLine.style.animation = "drawHeart 4s ease forwards";
+
+    const layoutTimer = setTimeout(function() {
+        phrases.forEach(function(text, index) {
+            const phraseTimer = setTimeout(function() {
+                showPhrase(text, index);
+            }, 600 + index * 650);
+
+            timers.push(phraseTimer);
         });
 
-        // Запускаем рисование сердца заново.
-        heartLine.style.animation = "none";
-        void heartLine.getBoundingClientRect();
-        heartLine.style.animation = "drawHeart 4s ease forwards";
-
-        // Показываем признания на разных языках.
-        phrases.forEach(function(phrase, index) {
-            const timer = setTimeout(function() {
-                const element = document.createElement("div");
-
-                element.className = "phrase";
-                element.textContent = phrase.text;
-                element.style.left = phrase.x + "%";
-                element.style.top = phrase.y + "%";
-
-                scene.appendChild(element);
-
-                const removeTimer = setTimeout(function() {
-                    element.remove();
-                }, 2600);
-
-                timers.push(removeTimer);
-
-            }, index * 650);
-
-            timers.push(timer);
-        });
-
-        // В центре появляется I LOVE YOU.
         const centerTimer = setTimeout(function() {
             center.classList.add("show");
         }, 6500);
 
         timers.push(centerTimer);
 
-        // Финальная сцена появляется после признаний.
         const finaleTimer = setTimeout(function() {
             finale.classList.add("show");
-        }, phrases.length * 650 + 3500);
+        }, 600 + phrases.length * 650 + 3500);
 
         timers.push(finaleTimer);
-    }
 
-    // Обработчик нажатия на сердце.
-    secretHeart.addEventListener("click", function(event) {
-        event.preventDefault();
-        revealSecret();
-    });
+    }, 100);
 
-    // Повторный запуск анимации.
-    replayButton.addEventListener("click", function() {
-        start();
-    });
+    timers.push(layoutTimer);
+}
 
-    // Начинаем анимацию после загрузки страницы.
+secretHeart.addEventListener("click", function(event) {
+    event.preventDefault();
+    revealSecret();
+});
+
+replayButton.addEventListener("click", function() {
     start();
+});
+
+start();
 </script>
 
 </body>
