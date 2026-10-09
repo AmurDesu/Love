@@ -4,12 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Для тебя, любимая ♥</title>
-
 <style>
 * {
     box-sizing: border-box;
 }
-
 body {
     margin: 0;
     min-height: 100vh;
@@ -18,7 +16,6 @@ body {
     font-family: Georgia, "Times New Roman", serif;
     overflow: hidden;
 }
-
 #scene {
     position: relative;
     width: 100%;
@@ -33,7 +30,6 @@ body {
         #050505 100%
     );
 }
-
 .heading {
     position: absolute;
     top: 5%;
@@ -47,7 +43,6 @@ body {
     opacity: 0.9;
     padding: 0 15px;
 }
-
 #drawing {
     position: absolute;
     width: min(78vw, 430px);
@@ -57,7 +52,6 @@ body {
     transform: translate(-50%, -50%);
     overflow: visible;
 }
-
 #heartLine {
     fill: none;
     stroke: #c5a574;
@@ -69,16 +63,15 @@ body {
     filter: drop-shadow(0 0 5px #c5a574);
     animation: drawHeart 4s ease forwards;
 }
-
 @keyframes drawHeart {
     to {
         stroke-dashoffset: 0;
     }
 }
-
 .phrase {
     position: absolute;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) rotate(var(--angle, 0deg));
+    transform-origin: center center;
     color: #dfc79f;
     font-size: clamp(10px, 2.8vw, 14px);
     letter-spacing: 0.5px;
@@ -88,28 +81,23 @@ body {
     animation: phraseAppear 3.2s ease forwards;
     pointer-events: none;
 }
-
 @keyframes phraseAppear {
     0% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0.8);
+        transform: translate(-50%, -50%) rotate(var(--angle)) scale(0.8);
     }
-
     20% {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
+        transform: translate(-50%, -50%) rotate(var(--angle)) scale(1);
     }
-
     75% {
         opacity: 1;
     }
-
     100% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(1.05);
+        transform: translate(-50%, -50%) rotate(var(--angle)) scale(1.05);
     }
 }
-
 #center {
     position: absolute;
     left: 50%;
@@ -125,11 +113,9 @@ body {
     transition: opacity 2s ease;
     pointer-events: none;
 }
-
 #center.show {
     opacity: 1;
 }
-
 .subtitle {
     margin-top: 13px;
     padding: 0 15px;
@@ -138,7 +124,6 @@ body {
     line-height: 1.8;
     color: #a98c63;
 }
-
 #finale {
     position: absolute;
     inset: 0;
@@ -157,32 +142,27 @@ body {
     pointer-events: none;
     transition: opacity 2s ease, visibility 2s ease;
 }
-
 #finale.show {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
 }
-
 .message {
     width: 100%;
     max-width: 420px;
     text-align: center;
     animation: messageAppear 2s ease both;
 }
-
 @keyframes messageAppear {
     from {
         transform: translateY(15px);
         opacity: 0;
     }
-
     to {
         transform: translateY(0);
         opacity: 1;
     }
 }
-
 .small {
     font-size: 10px;
     letter-spacing: 5px;
@@ -190,7 +170,6 @@ body {
     color: #a98c63;
     margin-bottom: 22px;
 }
-
 h2 {
     margin: 0;
     color: #ead2a6;
@@ -199,7 +178,6 @@ h2 {
     letter-spacing: 2px;
     text-shadow: 0 0 25px rgba(197, 165, 116, 0.4);
 }
-
 .big-heart {
     display: inline-flex;
     align-items: center;
@@ -224,33 +202,27 @@ h2 {
     animation: heartbeat 1.8s ease-in-out infinite;
     transition: color 0.4s, transform 0.4s;
 }
-
 .big-heart:focus-visible {
     outline: 1px solid #c5a574;
     border-radius: 15px;
 }
-
 .big-heart:active {
     transform: scale(1.2);
 }
-
 .big-heart.open {
     color: #f0b8a9;
     transform: scale(1.15);
     animation: none;
     text-shadow: 0 0 25px rgba(240, 184, 169, 0.8);
 }
-
 @keyframes heartbeat {
     0%, 100% {
         transform: scale(1);
     }
-
     50% {
         transform: scale(1.1);
     }
 }
-
 #secretMessage {
     max-height: 0;
     opacity: 0;
@@ -260,16 +232,13 @@ h2 {
     font-size: 17px;
     line-height: 1.8;
 }
-
 #secretMessage.show {
     max-height: 250px;
     opacity: 1;
 }
-
 #secretMessage p {
     margin: 5px 0 15px;
 }
-
 .signature {
     color: #c5a574;
     font-size: 14px;
@@ -277,7 +246,6 @@ h2 {
     padding-bottom: 8px;
     line-height: 1.8;
 }
-
 .replay {
     display: block;
     margin: 25px auto 0;
@@ -294,44 +262,36 @@ h2 {
     -webkit-tap-highlight-color: transparent;
     transition: background 0.3s, color 0.3s;
 }
-
 .replay:active {
     background: #c5a574;
     color: #080706;
 }
-
 @media (max-width: 480px) {
     .heading {
         top: 6%;
         font-size: 9px;
         letter-spacing: 2px;
     }
-
     #drawing {
         width: 95vw;
         height: 65vh;
         top: 46%;
     }
-
     #center {
         top: 46%;
         letter-spacing: 2px;
     }
-
     .phrase {
         letter-spacing: 0;
         font-size: 10px;
     }
-
     .message {
         max-width: 340px;
     }
-
     #secretMessage {
         font-size: 16px;
     }
 }
-
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -340,20 +300,15 @@ h2 {
 }
 </style>
 </head>
-
 <body>
-
 <div id="scene">
-
     <div class="heading">
         ТЫСЯЧА СПОСОБОВ СКАЗАТЬ «Я ТЕБЯ ЛЮБЛЮ»
     </div>
-
     <svg id="drawing"
          viewBox="0 0 300 270"
          xmlns="http://www.w3.org/2000/svg"
          aria-hidden="true">
-
         <path id="heartLine"
             d="M150 245
                C130 225 20 155 20 85
@@ -361,21 +316,16 @@ h2 {
                C200 5 280 20 280 85
                C280 155 170 225 150 245 Z" />
     </svg>
-
     <div id="center">
         Я ТЕБЯ ЛЮБЛЮ
         <div class="subtitle">
             БОЛЬШЕ, ЧЕМ МОЖНО ВЫРАЗИТЬ СЛОВАМИ
         </div>
     </div>
-
     <div id="finale">
         <div class="message">
-
             <div class="small">ТОЛЬКО ДЛЯ ТЕБЯ</div>
-
             <h2>Любимая</h2>
-
             <button
                 type="button"
                 class="big-heart"
@@ -384,27 +334,21 @@ h2 {
                 aria-expanded="false">
                 ♡
             </button>
-
             <div id="secretMessage" aria-live="polite">
                 <p>
                     Я выбираю тебя.<br>
                     Сегодня, завтра и всегда.
                 </p>
-
                 <div class="signature">
                     Ты — моё самое красивое чувство. ♥
                 </div>
             </div>
-
             <button type="button" class="replay" id="replayButton">
                 ЕЩЁ РАЗ ♥
             </button>
-
         </div>
     </div>
-
 </div>
-
 <script>
 const scene = document.getElementById("scene");
 const drawing = document.getElementById("drawing");
@@ -414,9 +358,7 @@ const finale = document.getElementById("finale");
 const secretHeart = document.getElementById("secretHeart");
 const secretMessage = document.getElementById("secretMessage");
 const replayButton = document.getElementById("replayButton");
-
 let timers = [];
-
 const phrases = [
     "I love you",
     "Я тебя люблю",
@@ -439,132 +381,111 @@ const phrases = [
     "أحبك",
     "Σ' αγαπώ"
 ];
-
 function clearTimers() {
     timers.forEach(function(timer) {
         clearTimeout(timer);
     });
-
     timers = [];
 }
-
-function getHeartPoint(distance) {
-    const point = heartLine.getPointAtLength(distance);
-    const matrix = heartLine.getScreenCTM();
-
-    if (!matrix) {
-        return null;
-    }
-
-    const screenPoint = new DOMPoint(point.x, point.y)
-        .matrixTransform(matrix);
-
-    const sceneRect = scene.getBoundingClientRect();
-
-    return {
-        x: screenPoint.x - sceneRect.left,
-        y: screenPoint.y - sceneRect.top
-    };
-}
-
 function showPhrase(text, index) {
     const totalLength = heartLine.getTotalLength();
     const distance = totalLength * index / phrases.length;
-    const point = getHeartPoint(distance);
-
-    if (!point) {
+    const point = heartLine.getPointAtLength(distance);
+    const before = heartLine.getPointAtLength(
+        Math.max(0, distance - 1)
+    );
+    const after = heartLine.getPointAtLength(
+        Math.min(totalLength, distance + 1)
+    );
+    const matrix = heartLine.getScreenCTM();
+    if (!matrix) {
         return;
     }
-
+    const p = new DOMPoint(point.x, point.y)
+        .matrixTransform(matrix);
+    const a = new DOMPoint(before.x, before.y)
+        .matrixTransform(matrix);
+    const b = new DOMPoint(after.x, after.y)
+        .matrixTransform(matrix);
+    const sceneRect = scene.getBoundingClientRect();
+    let angle = Math.atan2(
+        b.y - a.y,
+        b.x - a.x
+    ) * 180 / Math.PI;
+    // Сохраняем читаемое направление текста.
+    if (angle > 90) {
+        angle -= 180;
+    }
+    if (angle < -90) {
+        angle += 180;
+    }
     const element = document.createElement("div");
     element.className = "phrase";
     element.textContent = text;
-
-    element.style.left = point.x + "px";
-    element.style.top = point.y + "px";
-
+    element.style.left = (p.x - sceneRect.left) + "px";
+    element.style.top = (p.y - sceneRect.top) + "px";
+    element.style.setProperty("--angle", angle + "deg");
     scene.appendChild(element);
-
     const removeTimer = setTimeout(function() {
         element.remove();
     }, 3300);
-
     timers.push(removeTimer);
 }
-
 function revealSecret() {
     secretHeart.classList.add("open");
     secretHeart.textContent = "♥";
     secretMessage.classList.add("show");
-
     secretHeart.setAttribute("aria-expanded", "true");
     secretHeart.setAttribute("aria-label", "Признание открыто");
 }
-
 function resetSecret() {
     secretHeart.classList.remove("open");
     secretHeart.textContent = "♡";
     secretMessage.classList.remove("show");
-
     secretHeart.setAttribute("aria-expanded", "false");
     secretHeart.setAttribute(
         "aria-label",
         "Открыть признание"
     );
 }
-
 function start() {
     clearTimers();
-
     finale.classList.remove("show");
     center.classList.remove("show");
     resetSecret();
-
     scene.querySelectorAll(".phrase").forEach(function(element) {
         element.remove();
     });
-
+    // Повторно запускаем рисование сердца.
     heartLine.style.animation = "none";
     void heartLine.getBoundingClientRect();
     heartLine.style.animation = "drawHeart 4s ease forwards";
-
     const layoutTimer = setTimeout(function() {
         phrases.forEach(function(text, index) {
             const phraseTimer = setTimeout(function() {
                 showPhrase(text, index);
             }, 600 + index * 650);
-
             timers.push(phraseTimer);
         });
-
         const centerTimer = setTimeout(function() {
             center.classList.add("show");
         }, 6500);
-
         timers.push(centerTimer);
-
         const finaleTimer = setTimeout(function() {
             finale.classList.add("show");
         }, 600 + phrases.length * 650 + 3500);
-
         timers.push(finaleTimer);
-
     }, 100);
-
     timers.push(layoutTimer);
 }
-
 secretHeart.addEventListener("click", function(event) {
     event.preventDefault();
     revealSecret();
 });
-
 replayButton.addEventListener("click", function() {
     start();
 });
-
 start();
 </script>
-
 </body>
 </html>
